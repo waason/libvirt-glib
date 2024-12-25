@@ -1,0 +1,231 @@
+# THIS FILE WAS AUTO-GENERATED
+#
+#  $ lcitool manifest ci/manifest.yml
+#
+# https://gitlab.com/libvirt/libvirt-ci
+
+
+# Native build jobs
+
+x86_64-almalinux-9:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-almalinux-9-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: almalinux-9
+    RPM: skip
+    TARGET_BASE_IMAGE: docker.io/library/almalinux:9
+
+
+x86_64-almalinux-9-git:
+  extends: .native_git_build_job
+  needs:
+    - job: x86_64-almalinux-9-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: almalinux-9
+    RPM: skip
+    TARGET_BASE_IMAGE: docker.io/library/almalinux:9
+
+
+x86_64-centos-stream-9:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-centos-stream-9-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: centos-stream-9
+    TARGET_BASE_IMAGE: quay.io/centos/centos:stream9
+
+
+x86_64-debian-11:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-debian-11-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: debian-11
+    TARGET_BASE_IMAGE: docker.io/library/debian:11-slim
+
+
+x86_64-debian-12:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-debian-12-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: debian-12
+    TARGET_BASE_IMAGE: docker.io/library/debian:12-slim
+
+
+x86_64-debian-sid:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-debian-sid-container
+      optional: true
+  allow_failure: true
+  variables:
+    NAME: debian-sid
+    TARGET_BASE_IMAGE: docker.io/library/debian:sid-slim
+
+
+x86_64-fedora-39:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-fedora-39-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: fedora-39
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:39
+
+
+x86_64-fedora-40:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-fedora-40-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: fedora-40
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:40
+
+
+x86_64-fedora-rawhide:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-fedora-rawhide-container
+      optional: true
+  allow_failure: true
+  variables:
+    NAME: fedora-rawhide
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:rawhide
+
+
+x86_64-opensuse-leap-15:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-opensuse-leap-15-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: opensuse-leap-15
+    RPM: skip
+    TARGET_BASE_IMAGE: registry.opensuse.org/opensuse/leap:15.6
+
+
+x86_64-opensuse-tumbleweed:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-opensuse-tumbleweed-container
+      optional: true
+  allow_failure: true
+  variables:
+    NAME: opensuse-tumbleweed
+    RPM: skip
+    TARGET_BASE_IMAGE: registry.opensuse.org/opensuse/tumbleweed:latest
+
+
+x86_64-ubuntu-2204:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-ubuntu-2204-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: ubuntu-2204
+    TARGET_BASE_IMAGE: docker.io/library/ubuntu:22.04
+
+
+x86_64-ubuntu-2404:
+  extends: .native_build_job
+  needs:
+    - job: x86_64-ubuntu-2404-container
+      optional: true
+  allow_failure: false
+  variables:
+    NAME: ubuntu-2404
+    TARGET_BASE_IMAGE: docker.io/library/ubuntu:24.04
+
+
+
+# Cross build jobs
+
+mingw32-fedora-40:
+  extends: .cross_build_job
+  needs:
+    - job: mingw32-fedora-40-container
+      optional: true
+  allow_failure: false
+  variables:
+    CROSS: mingw32
+    NAME: fedora-40
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:40
+
+
+mingw64-fedora-rawhide:
+  extends: .cross_build_job
+  needs:
+    - job: mingw64-fedora-rawhide-container
+      optional: true
+  allow_failure: true
+  variables:
+    CROSS: mingw64
+    NAME: fedora-rawhide
+    TARGET_BASE_IMAGE: registry.fedoraproject.org/fedora:rawhide
+
+
+# Native cirrus build jobs
+
+x86_64-freebsd-13:
+  extends: .cirrus_build_job
+  needs: []
+  allow_failure:
+    exit_codes: 3
+  variables:
+    CIRRUS_VM_IMAGE_NAME: freebsd-13-3
+    CIRRUS_VM_IMAGE_SELECTOR: image_family
+    CIRRUS_VM_INSTANCE_TYPE: freebsd_instance
+    INSTALL_COMMAND: pkg install -y
+    NAME: freebsd-13
+    UPDATE_COMMAND: pkg update
+    UPGRADE_COMMAND: pkg upgrade -y
+    XML_CATALOG_FILES: /usr/local/share/xml/catalog
+
+
+x86_64-freebsd-14:
+  extends: .cirrus_build_job
+  needs: []
+  allow_failure:
+    exit_codes: 3
+  variables:
+    CIRRUS_VM_IMAGE_NAME: freebsd-14-1
+    CIRRUS_VM_IMAGE_SELECTOR: image_family
+    CIRRUS_VM_INSTANCE_TYPE: freebsd_instance
+    INSTALL_COMMAND: pkg install -y
+    NAME: freebsd-14
+    UPDATE_COMMAND: pkg update
+    UPGRADE_COMMAND: pkg upgrade -y
+    XML_CATALOG_FILES: /usr/local/share/xml/catalog
+
+
+aarch64-macos-14:
+  extends: .cirrus_build_job
+  needs: []
+  allow_failure:
+    exit_codes: 3
+  variables:
+    CIRRUS_VM_IMAGE_NAME: ghcr.io/cirruslabs/macos-runner:sonoma
+    CIRRUS_VM_IMAGE_SELECTOR: image
+    CIRRUS_VM_INSTANCE_TYPE: macos_instance
+    INSTALL_COMMAND: brew install
+    NAME: macos-14
+    UPDATE_COMMAND: brew update
+    UPGRADE_COMMAND: brew upgrade
+    XML_CATALOG_FILES: /opt/homebrew/etc/xml/catalog
